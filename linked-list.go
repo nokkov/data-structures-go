@@ -45,9 +45,23 @@ func InitLinkedListExample() *LinkedList {
 	head := &Node{5, nil}
 	linkedList := &LinkedList{head: head}
 
-	for i := 0; i < 10; i++ {
+	for i := 0; i < 1; i++ {
 		linkedList.Insert(rand.Intn(11))
 	}
 
 	return linkedList
+}
+
+func (l *LinkedList) ConvertListToCircular() {
+	if l.head == nil {
+		panic("unable to make empty linked list circular")
+	}
+
+	hCopy := l.head
+
+	for l.head.next != nil {
+		l.head = l.head.next
+	}
+
+	l.head.next = hCopy
 }
